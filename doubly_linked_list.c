@@ -345,7 +345,7 @@ void Get_string(char string[]) {
  * In args:   title:  name of the node
  *            node_p:  pointer to node
  */
-void Print_node(char title[], struct list_node_s* node_p) {           // Do not modify the print_node() function in any way.
+void Print_node(char title[], struct list_node_s* node_p) {           
    printf("%s = ", title);
    if (node_p != NULL)
       printf("%s\n", node_p->data);
