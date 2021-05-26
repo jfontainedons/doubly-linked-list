@@ -1,5 +1,4 @@
-/* doubly_linked_list.c
- *
+/* 
  * Implement a sorted linked list of strings with operations Insert
  * in alphabetical order, Print, Member, Delete, Free_list.
  * The list nodes are doubly linked.
@@ -17,7 +16,6 @@
  *
  */
 
-/* You may not add any new header file */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -114,9 +112,10 @@ int main(void) {
 struct list_node_s* Allocate_node(int size) {
   struct list_node_s* temp_p;
   temp_p = (struct list_node_s*) malloc(sizeof(struct list_node_s));
-  temp_p->data = (char*) malloc((size + 1) * sizeof(char));           // Allocate memory. Include room for the terminating null character.
+  /* Allocate memory. Include room for the terminating null character. */
+  temp_p->data = (char*) malloc((size + 1) * sizeof(char));
   return temp_p;
-}  /* Allocate_node */
+} 
 
 
 /* Reverse the linked list. You can assume every list has at least 3 elements. */
@@ -128,13 +127,12 @@ void ReverseMyList(struct list_s* list_p) {
   struct list_node_s* current = head;
   struct list_node_s* next = NULL;
   while (current != NULL) {
-      // Store next
       next = current->next_p;
 
-      // Reverse current node's pointer
+      /* Reverse current node's pointer. */
       current->next_p = prev;
 
-      // Move pointers one position ahead.
+      /* Move pointers one position ahead. */
       prev = current;
       current = next;
   }
@@ -165,7 +163,6 @@ void Insert(struct list_s* list_p, char string[]) {
     return;
   } else {
     /* Case 2: List is not empty. */
-    // Declare and initialize required pointers.
     struct list_node_s* temp = list_p->h_p;
     struct list_node_s* curr = NULL;
     while (temp != NULL) {
@@ -195,15 +192,12 @@ void Insert(struct list_s* list_p, char string[]) {
       new_node->next_p = temp;
     }
   }
-}   /* Insert */
+}   
 
 /*-------------------// ----------------------------------------------*/
 /* Function:   Print
  * Purpose:    Print the contents of the nodes in the list
  * Input arg:  list_p = pointers to first and last nodes in list
- *
- * Hint: The implementation of this function (below) shows how
- * to traverse a linked list.
  */
 void Print(struct list_s* list_p) {
    struct list_node_s* curr_p = list_p->h_p;
@@ -215,7 +209,7 @@ void Print(struct list_s* list_p) {
       curr_p = curr_p->next_p;
    }
    printf("\n");
-}  /* Print */
+}  
 
 
 /*-----------------------------------------------------------------*/
@@ -227,7 +221,7 @@ void Print(struct list_s* list_p) {
  */
 int Member(struct list_s* list_p, char string[]) {
   struct list_node_s* current_p;
-  current_p = list_p->h_p;                                            // Start at the head.
+  current_p = list_p->h_p;                                            
 
   while(current_p != NULL) {
     if(strcmp(current_p->data, string) == 0) {
@@ -236,7 +230,7 @@ int Member(struct list_s* list_p, char string[]) {
     current_p = current_p->next_p;
   }
    return 0;
-}  /* Member */
+} 
 
 
 /*-----------------------------------------------------------------*/
@@ -247,7 +241,7 @@ int Member(struct list_s* list_p, char string[]) {
 void Free_node(struct list_node_s* node_p) {
    free(node_p->data);
    free(node_p);
-}  /* Free_node */
+} 
 
 
 /*-----------------------------------------------------------------*/
@@ -293,7 +287,7 @@ void Delete(struct list_s* list_p, char string[]) {
 
     Free_node(temp_p);
   }
-}  /* Delete */
+}  
 
 /*-----------------------------------------------------------------*/
 /* Function:   Free_list
@@ -302,8 +296,8 @@ void Delete(struct list_s* list_p, char string[]) {
  */
 void Free_list(struct list_s* list_p) {
   struct list_node_s* current_p;
-  current_p = list_p->h_p;                                            // Start at the head.
-  struct list_node_s* temp_p;                                         // Create a node to hold a temp value.
+  current_p = list_p->h_p;                                            
+  struct list_node_s* temp_p;                                         
 
   if (current_p == NULL) {
     return;
@@ -330,7 +324,7 @@ char Get_command(void) {
    /* Put the space before the %c so scanf will skip white space */
    scanf(" %c", &c);
    return c;
-}  /* Get_command */
+}  
 
 /*-----------------------------------------------------------------*/
 /* Function:   Get_string
@@ -341,7 +335,7 @@ void Get_string(char string[]) {
 
    printf("Please enter a string:  ");
    scanf("%s", string);
-}  /* Get_string */
+}  
 
 
 /*-----------------------------------------------------------------*/
@@ -357,4 +351,4 @@ void Print_node(char title[], struct list_node_s* node_p) {           // Do not 
       printf("%s\n", node_p->data);
    else
       printf("NULL\n");
-}  /* Print_node */
+}  
